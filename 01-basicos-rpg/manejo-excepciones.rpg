@@ -1,0 +1,40 @@
+       IDENTIFICATION DIVISION.
+       PROGRAM-ID. MANEJO-EXCEPCIONES-RPG.
+      * Programa que demuestra el manejo de excepciones
+      * Utiliza GitHub Copilot para generar código de error handling
+      
+       DATA DIVISION.
+       WORKING-STORAGE SECTION.
+       01  WS-NUMERO-1 PIC 9(5).
+       01  WS-NUMERO-2 PIC 9(5).
+       01  WS-RESULTADO PIC 9(8).
+       01  WS-ESTADO-ERROR PIC X VALUE 'N'.
+       01  WS-MENSAJE-ERROR PIC X(50).
+       
+       PROCEDURE DIVISION.
+           DISPLAY 'Programa de Manejo de Excepciones'.
+           
+           MOVE 100 TO WS-NUMERO-1.
+           MOVE 0 TO WS-NUMERO-2.
+           
+           PERFORM VALIDAR-Y-DIVIDIR.
+           
+           IF WS-ESTADO-ERROR = 'Y'
+               DISPLAY 'Error: ' WS-MENSAJE-ERROR
+           ELSE
+               DISPLAY 'Resultado de la división: ' WS-RESULTADO
+           END-IF.
+           
+           STOP RUN.
+       
+       VALIDAR-Y-DIVIDIR.
+      * Validar que el divisor no sea cero
+           IF WS-NUMERO-2 = 0
+               MOVE 'Y' TO WS-ESTADO-ERROR
+               MOVE 'No se puede dividir entre cero' 
+                   TO WS-MENSAJE-ERROR
+           ELSE
+               MOVE 'N' TO WS-ESTADO-ERROR
+               DIVIDE WS-NUMERO-1 BY WS-NUMERO-2
+                   GIVING WS-RESULTADO
+           END-IF.
