@@ -1,0 +1,42 @@
+       IDENTIFICATION DIVISION.
+       PROGRAM-ID. ARRAYS-BASICOS-RPG.
+      * Programa que demuestra la manipulación de arrays
+      * Utiliza GitHub Copilot para sugerir operaciones de array
+      
+       DATA DIVISION.
+       WORKING-STORAGE SECTION.
+       01  WS-ARRAY-NUMEROS.
+           05  WS-NUMERO PIC 9(3) OCCURS 10 TIMES.
+       
+       01  WS-ARRAY-NOMBRES.
+           05  WS-NOMBRE PIC X(30) OCCURS 5 TIMES.
+       
+       01  WS-INDICE PIC 9(2).
+       01  WS-SUMA PIC 9(4) VALUE 0.
+       01  WS-PROMEDIO PIC 9(4)V99.
+       
+       PROCEDURE DIVISION.
+      * Llenar el array de números
+           PERFORM VARYING WS-INDICE FROM 1 BY 1
+               UNTIL WS-INDICE > 10
+               MOVE FUNCTION RANDOM * 100 TO WS-NUMERO(WS-INDICE)
+           END-PERFORM.
+           
+      * Calcular suma y promedio
+           PERFORM VARYING WS-INDICE FROM 1 BY 1
+               UNTIL WS-INDICE > 10
+               ADD WS-NUMERO(WS-INDICE) TO WS-SUMA
+           END-PERFORM.
+           
+           DIVIDE WS-SUMA BY 10 GIVING WS-PROMEDIO.
+           
+           DISPLAY 'Array de números:'.
+           PERFORM VARYING WS-INDICE FROM 1 BY 1
+               UNTIL WS-INDICE > 10
+               DISPLAY 'Elemento ' WS-INDICE ': ' 
+                   WS-NUMERO(WS-INDICE)
+           END-PERFORM.
+           
+           DISPLAY 'Suma total: ' WS-SUMA.
+           DISPLAY 'Promedio: ' WS-PROMEDIO.
+           STOP RUN.
