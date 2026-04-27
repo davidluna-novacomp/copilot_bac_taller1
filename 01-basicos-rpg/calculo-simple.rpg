@@ -1,0 +1,45 @@
+       IDENTIFICATION DIVISION.
+       PROGRAM-ID. CALCULO-SIMPLE-RPG.
+      * Programa que demuestra operaciones matemáticas
+      * Utiliza GitHub Copilot para sugerir cálculos
+      
+       DATA DIVISION.
+       WORKING-STORAGE SECTION.
+       01  WS-NUMERO-1 PIC 9(5) VALUE 150.
+       01  WS-NUMERO-2 PIC 9(5) VALUE 30.
+       01  WS-RESULTADO PIC 9(8).
+       01  WS-RESTO PIC 9(5).
+       01  WS-PROMEDIO PIC 9(5)V99.
+       
+       PROCEDURE DIVISION.
+           DISPLAY '====== OPERACIONES MATEMÁTICAS ======'.
+           
+      * Suma
+           COMPUTE WS-RESULTADO = WS-NUMERO-1 + WS-NUMERO-2.
+           DISPLAY WS-NUMERO-1 ' + ' WS-NUMERO-2 ' = ' 
+               WS-RESULTADO.
+           
+      * Resta
+           COMPUTE WS-RESULTADO = WS-NUMERO-1 - WS-NUMERO-2.
+           DISPLAY WS-NUMERO-1 ' - ' WS-NUMERO-2 ' = ' 
+               WS-RESULTADO.
+           
+      * Multiplicación
+           COMPUTE WS-RESULTADO = WS-NUMERO-1 * WS-NUMERO-2.
+           DISPLAY WS-NUMERO-1 ' * ' WS-NUMERO-2 ' = ' 
+               WS-RESULTADO.
+           
+      * División
+           DIVIDE WS-NUMERO-1 BY WS-NUMERO-2
+               GIVING WS-RESULTADO
+               REMAINDER WS-RESTO.
+           DISPLAY WS-NUMERO-1 ' / ' WS-NUMERO-2 ' = ' 
+               WS-RESULTADO ' (resto: ' WS-RESTO ')'.
+           
+      * Promedio
+           COMPUTE WS-PROMEDIO = 
+               (WS-NUMERO-1 + WS-NUMERO-2) / 2.
+           DISPLAY 'Promedio: ' WS-PROMEDIO.
+           
+           DISPLAY '===================================='.
+           STOP RUN.
