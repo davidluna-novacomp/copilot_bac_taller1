@@ -1,0 +1,44 @@
+       IDENTIFICATION DIVISION.
+       PROGRAM-ID. LECTURA-ARCHIVO-RPG.
+      * Programa que demuestra la lectura de un archivo físico
+      * Utiliza GitHub Copilot para generar la lógica de lectura
+      
+       ENVIRONMENT DIVISION.
+       INPUT-OUTPUT SECTION.
+       FILE-CONTROL.
+           SELECT ARCHIVO-EMPLEADOS ASSIGN TO 'EMPSYS'
+               ORGANIZATION IS SEQUENTIAL.
+       
+       DATA DIVISION.
+       FILE SECTION.
+       FD  ARCHIVO-EMPLEADOS.
+       01  REGISTRO-EMPLEADO.
+           05  EMP-ID PIC 9(5).
+           05  EMP-NOMBRE PIC X(30).
+           05  EMP-SALARIO PIC 9(8)V99.
+           05  EMP-DEPARTAMENTO PIC X(20).
+       
+       WORKING-STORAGE SECTION.
+       01  WS-EOF PIC X VALUE 'N'.
+       01  WS-CONTADOR PIC 9(5) VALUE 0.
+       01  WS-TOTAL-SALARIOS PIC 9(10)V99 VALUE 0.
+       
+       PROCEDURE DIVISION.
+           OPEN INPUT ARCHIVO-EMPLEADOS.
+           
+           PERFORM UNTIL WS-EOF = 'Y'
+               READ ARCHIVO-EMPLEADOS
+                   AT END
+                       MOVE 'Y' TO WS-EOF
+                   NOT AT END
+                       ADD 1 TO WS-CONTADOR
+                       ADD EMP-SALARIO TO WS-TOTAL-SALARIOS
+                       DISPLAY 'Empleado: ' EMP-NOMBRE
+                       DISPLAY 'Salario: ' EMP-SALARIO
+               END-READ
+           END-PERFORM.
+           
+           CLOSE ARCHIVO-EMPLEADOS.
+           DISPLAY 'Total de empleados: ' WS-CONTADOR.
+           DISPLAY 'Total de salarios: ' WS-TOTAL-SALARIOS.
+           STOP RUN.
