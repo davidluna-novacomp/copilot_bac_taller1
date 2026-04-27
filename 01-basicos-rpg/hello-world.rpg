@@ -1,0 +1,20 @@
+       IDENTIFICATION DIVISION.
+       PROGRAM-ID. HELLO-WORLD-RPG.
+      * Programa básico que imprime un mensaje de bienvenida
+      * Demuestra el uso de GitHub Copilot para generar salida
+      
+       ENVIRONMENT DIVISION.
+       DATA DIVISION.
+       WORKING-STORAGE SECTION.
+       01  WS-MESSAGE PIC X(50) VALUE 'Bienvenido a GitHub Copilot'.
+       01  WS-AUTHOR PIC X(30) VALUE 'Desarrollador AS400'.
+       
+       PROCEDURE DIVISION.
+           DISPLAY 'Mensaje: ' WS-MESSAGE.
+           DISPLAY 'Autor: ' WS-AUTHOR.
+           DISPLAY '===================================='.
+           DISPLAY 'Este es un programa básico de RPG'.
+           DISPLAY 'que utiliza GitHub Copilot para'.
+           DISPLAY 'facilitar el desarrollo'.
+           DISPLAY '===================================='.
+           STOP RUN.
